@@ -8,7 +8,7 @@ duyệt rồi mới sang giai đoạn kế tiếp.
 1. Tạo tài liệu bàn giao kỹ thuật (hiện chưa có tài liệu nào) cho phần
    quản lý tài sản.
 2. Phát triển/sửa script theo đúng quy ước hiện có.
-3. Nắm rõ phần tùy biến (ESD_ và mọi chỗ khác baseline) để đánh giá tác
+3. Nắm rõ phần tùy biến (ESD_/HPT_ và mọi chỗ khác baseline) để đánh giá tác
    động khi nâng cấp.
 
 ## Nguyên tắc tiết kiệm token (bắt buộc)
@@ -22,7 +22,7 @@ duyệt rồi mới sang giai đoạn kế tiếp.
 
 ## Giai đoạn 0: Chuẩn bị (tôi tự làm)
 - Đặt tên thư mục: ScriptLibrary/BASELINE_9.81/ và
-  ScriptLibrary/APP_9.81_10.0.62.29/; sửa tên file có dấu cách.
+  ScriptLibrary/Personal/ (script ESD_/HPT_); sửa tên file có dấu cách.
 - Tạo docs/, tools/, Custom/new/, Custom/modified/.
 - git init và commit trạng thái ban đầu.
 - Cấu hình .claude/settings.json (chặn Read Document/pdf/, chặn Edit
@@ -44,22 +44,20 @@ Model gợi ý: Sonnet / Low.
 Model gợi ý: Opus / High, plan mode (riêng 2a có thể Sonnet vì chủ yếu
 là script). Mỗi mục là một phiên riêng.
 
-- 2a. DIFF BASELINE (rẻ nhất, làm trước). Việc đầu tiên: chỉ liệt kê
-  cấu trúc hai thư mục để xác định dạng export (từng file .js hay file
-  unload .unl/XML), chưa đọc nội dung. Rồi viết script (đặt trong
-  tools/) so sánh
-  BASELINE_9.81 với APP_9.81_10.0.62.29, phân loại: file chỉ có ở APP
-  (thêm mới), file khác nội dung (đã sửa), file chỉ có ở BASELINE (bị
-  xóa/thiếu). Ghi vào docs/DIFF_BASELINE.md. Chưa đọc sâu nội dung.
-  Lưu ý: nếu baseline và bản đang chạy khác patch/build, diff sẽ lẫn
-  khác biệt của hãng; hãy nêu nghi ngờ này nếu thấy nhiều khác biệt
-  không giống code của tôi.
+- 2a. DIFF BASELINE (rẻ nhất, làm trước). Script tools/diff_baseline.py
+  ghi docs/DIFF_BASELINE.md. Hiện tại (chưa có export 9.81 sạch):
+  liệt kê BASELINE_9.81 (script SM) và Personal/ (ESD_/HPT_), kiểm tra
+  prefix nằm sai thư mục, trùng tên. Chỗ sửa trực tiếp script gốc CHƯA
+  phát hiện được. Khi có export 9.81 sạch: chạy với --clean <thư mục>
+  để phân loại thêm mới / đã sửa / thiếu. Lưu ý: nếu bản sạch và bản
+  đang chạy khác patch/build, diff sẽ lẫn khác biệt của hãng; hãy nêu
+  nghi ngờ này nếu thấy nhiều khác biệt không giống code của tôi.
 - 2b. docs/ScriptLibrary_INDEX.md. Tầng nông cho toàn bộ (script liệt kê
   tên file, hàm, comment đầu file); tầng sâu chỉ cho script liên quan
   quản lý tài sản/CI và các file có trong DIFF_BASELINE.md.
-- 2c. docs/ESD_INVENTORY.md: từng thứ mang prefix ESD_ (ở đâu, làm gì,
+- 2c. docs/ESD_INVENTORY.md: từng thứ mang prefix ESD_/HPT_ (ở đâu, làm gì,
   phụ thuộc gì), đối chiếu với DIFF_BASELINE.md. Báo chỗ đã sửa gốc
-  mà không có ESD_.
+  mà không có ESD_/HPT_ (cần export 9.81 sạch).
 - 2d. docs/CONVENTIONS.md: quy ước và cú pháp thực tế, rút từ BASELINE
   (ưu tiên) và docs 9.81.
 Giới hạn phạm vi: diff và ESD_INVENTORY chỉ bao phủ ScriptLibrary. Tùy

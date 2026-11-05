@@ -24,12 +24,16 @@ bằng tiếng Anh.
   cả cập nhật INDEX.md); còn lại coi như chỉ đọc. Tra INDEX.md trước.
 - tools/                : script công cụ do bạn viết (chuyển PDF, diff,
   quét/lập chỉ mục...), không phải code SM. Được ghi và commit vào git.
-- ScriptLibrary/BASELINE_9.81/ : bản ScriptLibrary CHUẨN của 9.81 (chưa
-  tùy biến). CHỈ ĐỌC. Là thước đo "thành phần gốc của hãng".
-- ScriptLibrary/APP_9.81_10.0.62.29/ : export từ tầng app đang chạy 9.81
-  (10.0.62.29 là IP máy chủ tầng app). CHỈ ĐỌC. Là hệ thống thực tế.
+- ScriptLibrary/BASELINE_9.81/ : script SM (không prefix ESD_/HPT_) lấy từ
+  tầng app đang chạy 9.81 (10.0.62.29). CHỈ ĐỌC. Dùng làm thước đo
+  "thành phần gốc của hãng". GIỚI HẠN: không phải export từ instance
+  9.81 sạch, nên chỗ sửa trực tiếp script gốc (nếu có) vẫn nằm trong
+  đây và KHÔNG phát hiện được.
+- ScriptLibrary/Personal/ : script tùy biến (ESD_, HPT_) đang chạy trên tầng
+  app 10.0.62.29, tách ra từ cùng bản export. CHỈ ĐỌC. Là hệ thống thực
+  tế, chưa qua xác nhận (mức tin cậy 4).
 - Custom/               : nơi duy nhất để đặt code mới/bản sao do bạn viết
-  - Custom/new/         : script, hàm mới (bắt buộc prefix ESD_)
+  - Custom/new/         : script, hàm mới (bắt buộc prefix ESD_ hoặc HPT_)
   - Custom/modified/    : bản sao của script gốc có chỉnh sửa, kèm header
     ghi file gốc, lý do, nội dung thay đổi
 - MySyntax/verified/    : cú pháp tôi đã xác nhận, dùng làm mẫu
@@ -38,17 +42,19 @@ bằng tiếng Anh.
   - Utils/              : hàm tiện ích tôi tự viết
 - docs/                 : tài liệu do bạn sinh ra
   - ScriptLibrary_INDEX.md : chỉ mục ScriptLibrary, đọc trước khi mở file
-  - DIFF_BASELINE.md       : kết quả diff BASELINE_9.81 vs APP_9.81 (mọi
-    chỗ khác biệt = tùy biến của tôi, trừ khác biệt do khác build/patch)
-  - ESD_INVENTORY.md       : danh sách mọi thứ mang prefix ESD_
+  - DIFF_BASELINE.md       : so sánh BASELINE_9.81 vs Personal/ (hiện chỉ
+    liệt kê script tùy biến; diff nội dung chỉ có khi có export 9.81 sạch)
+  - ESD_INVENTORY.md       : danh sách mọi thứ mang prefix ESD_ hoặc HPT_
   - CONVENTIONS.md         : quy ước rút ra từ BASELINE_9.81 (ưu tiên)
-    và docs 9.81, không lấy code APP làm quy ước
+    và docs 9.81, không lấy code trong Personal/ làm quy ước
   - CHANGELOG.md           : mọi thay đổi
   - PLAN.md                : kế hoạch làm việc theo giai đoạn (đọc khi bắt
     đầu dự án hoặc khi tôi hỏi về hướng làm; không nạp mặc định)
 
 # Phạm vi dữ liệu hiện có (giới hạn phải ghi rõ trong docs)
-- Hiện chỉ có export ScriptLibrary (baseline và bản đang chạy).
+- Hiện chỉ có export ScriptLibrary từ tầng app đang chạy, đã tách thành
+  BASELINE_9.81/ (script SM) và Personal/ (script ESD_, HPT_). Chưa có export
+  ScriptLibrary từ instance 9.81 sạch.
 - Các phần tùy biến khác (Format, Process, Trigger, dbdict, Display
   option, Link, wizard, ...) CHƯA được export: diff và ESD_INVENTORY
   không bao phủ chúng. Mọi file trong docs/ phải ghi rõ giới hạn này.
@@ -57,23 +63,23 @@ bằng tiếng Anh.
 - Khi tôi export thêm, cập nhật mục này và thư mục tương ứng.
 
 # Quyền ghi/đọc (tóm tắt, để không mâu thuẫn)
-- KHÔNG được sửa: ScriptLibrary/ (cả hai thư mục con), Document/pdf/.
+- KHÔNG được sửa: ScriptLibrary/ (BASELINE_9.81/ và Personal/), Document/pdf/.
   Không tự mở Document/pdf/.
 - Được ghi: Document/md/ (chỉ khi tôi yêu cầu chuyển đổi docs), docs/,
   Custom/, tools/.
 - MySyntax/: chỉ di chuyển pending → verified khi tôi đồng ý.
 
-# Prefix ESD_ và baseline
-- ESD_ là quy ước riêng của tôi, dùng để phân biệt mọi thứ tôi tự tạo
-  với thành phần có sẵn của hệ thống/hãng.
-- Thấy ESD_ → tùy biến của tôi. Không có ESD_ → thành phần gốc của
-  hệ thống: không sửa, chỉ gọi/kế thừa.
+# Prefix ESD_/HPT_ và baseline
+- ESD_ và HPT_ là hai prefix riêng của tôi, dùng song song, để phân
+  biệt mọi thứ tôi tự tạo với thành phần có sẵn của hệ thống/hãng.
+- Thấy ESD_ hoặc HPT_ → tùy biến của tôi. Không có hai prefix này →
+  thành phần gốc của hệ thống: không sửa, chỉ gọi/kế thừa.
 - Mọi thứ mới (script, hàm, biến toàn cục, format, process...) phải có
-  prefix ESD_.
-- Tùy biến được xác định CHÍNH XÁC bằng diff giữa BASELINE_9.81 và
-  APP_9.81_10.0.62.29, không chỉ dựa vào prefix. Chỗ khác biệt mà không
-  có ESD_ = sửa trực tiếp thành phần gốc: báo cho tôi.
-- Ưu tiên tạo script ESD_ mới gọi lại script gốc thay vì sửa script gốc.
+  prefix ESD_ hoặc HPT_.
+- Hiện tùy biến chỉ xác định được qua prefix ESD_/HPT_ (Personal/). Khi có
+  export 9.81 sạch: xác định CHÍNH XÁC bằng diff với bản đó; chỗ khác
+  biệt mà không có ESD_/HPT_ = sửa trực tiếp thành phần gốc: báo cho tôi.
+- Ưu tiên tạo script ESD_/HPT_ mới gọi lại script gốc thay vì sửa script gốc.
   Chỉ tạo bản sao ở Custom/modified/ khi bắt buộc, và hỏi tôi trước.
 
 # Thứ tự tin cậy khi viết hoặc giải thích code SM
@@ -81,7 +87,7 @@ bằng tiếng Anh.
    ở 9.81.
 2. Document/md/ (docs chính thức).
 3. MySyntax/verified/ (tôi đã xác nhận).
-4. Code đã khác baseline hoặc mang ESD_ trong APP_9.81: là code đang
+4. Code trong ScriptLibrary/Personal/ (ESD_, HPT_): là code đang
    chạy thật nhưng chưa qua quy trình xác nhận. Dùng để HIỂU hệ thống,
    KHÔNG dùng làm mẫu chuẩn cho code mới cho đến khi tôi xác nhận.
 5. Kiến thức có sẵn của bạn: chỉ bổ sung, phải nói rõ khi dựa vào đây.
@@ -92,7 +98,7 @@ Khi các nguồn mâu thuẫn, nêu rõ mâu thuẫn và hỏi tôi, đừng t�
   MySyntax/verified/, bám theo cách đặt tên và cấu trúc đó.
 - Không giả định tính năng JavaScript hiện đại; chỉ dùng cú pháp đã
   thấy trong BASELINE_9.81, docs 9.81 hoặc MySyntax/verified/. Cú pháp
-  chỉ xuất hiện trong APP_9.81 (code đang chạy) thì chưa coi là chuẩn:
+  chỉ xuất hiện trong Personal/ (code đang chạy) thì chưa coi là chuẩn:
   nêu rõ và hỏi tôi.
 - Không bịa tên hàm, bảng, field, thư viện. Không chắc thì nói
   "chưa xác nhận" và chỉ ra file cần kiểm tra.
@@ -110,7 +116,7 @@ Khi các nguồn mâu thuẫn, nêu rõ mâu thuẫn và hỏi tôi, đừng t�
   đồng ý.
 - Chỉ làm việc trên file export, không thao tác môi trường PROD.
 - Mọi thay đổi ghi vào docs/CHANGELOG.md, và cập nhật ESD_INVENTORY.md
-  nếu có thay đổi liên quan ESD_.
+  nếu có thay đổi liên quan ESD_/HPT_.
 
 # Script trong tools/
 - Chỉ được ghi vào docs/ hoặc Document/md/ (và thư mục tạm của tools/).
