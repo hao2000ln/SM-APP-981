@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./Document/pdf/**)",
+      "Edit(./ScriptLibrary/**)",
+      "Edit(./Document/pdf/**)"
+    ]
+  }
+}

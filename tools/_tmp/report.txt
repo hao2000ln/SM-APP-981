@@ -1,0 +1,37 @@
+== Develop: 3086 trang PDF, body bat dau tai trang PDF 46
+Muc luc: 1204 muc
+Kiem tra heading: 1203/1204 tim thay, 1 khong thay (dung trang du kien)
+   khong thay: 1.2.4.2.127 RAD Function: sysinfo.get("PKMode") (trang in 1297)
+Da ghi 112 file md, 3931558 ky tu; dong giong bang/code: 2378
+
+== Integrate: 1755 trang PDF, body bat dau tai trang PDF 28
+Muc luc: 705 muc
+Kiem tra heading: 703/705 tim thay, 2 khong thay (dung trang du kien)
+   khong thay: 1.6.2 Using the ServiceManagerEnhancedAdapter9.41 adapter (trang in 897)
+   khong thay: 1.6.2.5.2.11 How to enable the automatic deletion of CI relationships from UCMDB1155 1.6.3. Using the ServiceManagerAdapter9.41 adapter (trang in 1159)
+Da ghi 62 file md, 2306055 ky tu; dong giong bang/code: 558
+
+== Upgrade: 298 trang PDF, body bat dau tai trang PDF 4
+Muc luc: 50 muc
+Kiem tra heading: 50/50 tim thay, 0 khong thay (dung trang du kien)
+Da ghi 11 file md, 428378 ky tu; dong giong bang/code: 182
+
+== Release_notes: 132 trang PDF, body bat dau tai trang PDF 3
+Muc luc: 6 muc
+Kiem tra heading: 6/6 tim thay, 0 khong thay (dung trang du kien)
+Da ghi 3 file md, 256351 ky tu; dong giong bang/code: 47
+
+== Administer: 3324 trang PDF, body bat dau tai trang PDF 54
+Muc luc: 1431 muc
+Kiem tra heading: 1421/1431 tim thay, 10 khong thay (dung trang du kien)
+   khong thay: 1.2.24.1 Parameter: appthreadspersession (trang in 739)
+   khong thay: 1.2.24.2 Parameter: asyncrefreshlbinterval (trang in 741)
+   khong thay: 1.2.24.6 Parameter: emailoutConfigFromSmisOnly (trang in 748)
+   khong thay: 1.2.24.12 Parameter: groupsubnetaddress (trang in 759)
+   khong thay: 1.2.24.14 Parameter: groupudpjointimeout (trang in 762)
+   khong thay: 1.2.24.24 Parameter: maxattachmentcount (trang in 778)
+   khong thay: 1.2.24.28 Parameter: ssl_trustedClientsJKS (trang in 787)
+   khong thay: 1.2.24.29 Parameter: ssl_trustedClientsPwd (trang in 789)
+   khong thay: 1.2.26.1 Parameter: certExpireWarningDays (trang in 831)
+   khong thay: 1.2.27.2 Parameter: attachmentsegmentsize (trang in 891)
+Da ghi 128 file md, 4095143 ky tu; dong giong bang/code: 1721
