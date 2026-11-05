@@ -1,0 +1,1 @@
+lib.SOAP.WSDL2js( "http://16.95.106.150:7070/ServiceCatalog/wsdl/ServiceCatalog.wsdl" );
